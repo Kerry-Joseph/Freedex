@@ -1,2 +1,2 @@
 # **Freedex**
-## Index of Free-To-Play videogames
+## Index for Free-To-Play videogames
