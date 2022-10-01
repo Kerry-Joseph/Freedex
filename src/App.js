@@ -7,6 +7,7 @@ import GameDisplay from './components/GameDisplay';
 function App() {
 
   const [indexState, setIndexState] = useState(null)
+  const [idState, setIdState] = useState(null)
 
 
   const url = 'https://free-to-play-games-database.p.rapidapi.com/api/games';
@@ -19,7 +20,7 @@ function App() {
     }
   };
 
-  const test = async() => {
+  const getGameData = async() => {
     try {
       const res = await fetch(url, options)
       const data = await res.json()
@@ -30,16 +31,16 @@ function App() {
   }
 
   useEffect(() => {
-    test()
+    getGameData()
   }, [])
 
   return (
     <div className="App">
       <Header />
-      <Index indexState = {indexState}/>
-      <GameDisplay />
+      <Index indexState = {indexState} setIdState = {setIdState}/>
+      <GameDisplay idState = {idState} indexState = {indexState}/>
     </div>
-  );
+  )
 }
 
 export default App;
