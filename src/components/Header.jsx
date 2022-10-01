@@ -1,16 +1,14 @@
-import { useEffect, useState } from "react"
+import { useState } from "react"
 
 const Header = () => {
      
     const [filterState, setFilterState] = useState({
-        tag : "",
+        tag : "Tag",
         platform : "",
         search : ""
     })
 
     const tagList = document.querySelector("#tag-list")
-    const selectedTag = document.querySelector("#selected-tag")
-    
     
     const showTags = () => {
         if(tagList.style.display === "none"){
@@ -20,12 +18,20 @@ const Header = () => {
         }
     }
 
+    const handleTagClick = e => {
+        setFilterState(prev => { 
+            return {
+                ...prev, tag : e.target.innerHTML
+            }
+        })
+    }
 
+    
     return (
         <div>
             <div>
-                <h1 id="selected-tag" onClick={() => showTags()}>click</h1>
-                <ul style={{display: "none"}} id="tag-list">
+                <h1 id="selected-tag" onClick={() => showTags()}>{filterState.tag}</h1>
+                <ul style={{display: "none"}} id="tag-list" onClick={handleTagClick}>
                     <li>mmorpg</li>
                     <li>shooter</li>
                     <li>strategy</li>
