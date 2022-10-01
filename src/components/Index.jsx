@@ -1,4 +1,4 @@
-const Index = ({ indexState }) => {
+const Index = ({ indexState, setIdState }) => {
 
 
 
@@ -8,7 +8,7 @@ const Index = ({ indexState }) => {
 
     const loaded = () => {
         return indexState.map((game) => (
-            <div key={game.id} className="border-b border-black flex flex-row items-center">
+            <div onClick={() => setIdState(game.id)} key={game.id} className="border-b border-black flex flex-row items-center">
                 <img src={game.thumbnail} alt="game thumbnail" className="h-16" />
                 <div>
                     <h1>{game.title}</h1>
