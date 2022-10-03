@@ -11,7 +11,7 @@ function App() {
   const [idState, setIdState] = useState(null)
   const [filterState, setFilterState] = useState({
     tag : "Tag",
-    platform : "",
+    platform : "Platform",
     search : ""
   })
 

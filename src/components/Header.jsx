@@ -18,12 +18,30 @@ const Header = ({ filterState, setFilterState }) => {
         })
     }
 
-    
+    // tag list dropdown
+    const platformList = document.querySelector("#platform-list")
+    const showPlatforms = () => {
+        if(platformList.style.display === "none"){
+            platformList.style.display = "block"
+        } else {
+            platformList.style.display = "none"
+        }
+    }
+
+    const handlePlatformClick = e => {
+        setFilterState(prev => { 
+            return {
+                ...prev, platform : e.target.innerHTML
+            }
+        })
+    }
+
+
     
     return (
         <div>
             <div>
-                <h1 id="selected-tag" onClick={() => showTags()}>{filterState.tag}</h1>
+                <h1 onClick={() => showTags()}>{filterState.tag}</h1>
                 <ul style={{display: "none"}} id="tag-list" onClick={handleTagClick}>
                     <li>Tag</li>
                     <li>MMOARPG</li>
@@ -41,6 +59,14 @@ const Header = ({ filterState, setFilterState }) => {
                     <li>Fighting</li>
                     <li>Action RPG</li>
                     <li>ARPG</li>
+                </ul>
+            </div>
+            <div>
+                <h1 onClick={() => showPlatforms()}>{filterState.platform}</h1>
+                <ul style={{display: "none"}} id="platform-list" onClick={handlePlatformClick}>
+                    <li>Platform</li>
+                    <li>PC</li>
+                    <li>Browser</li> 
                 </ul>
             </div>
         </div>

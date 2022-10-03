@@ -8,9 +8,13 @@ const Index = ({ setIdState, gameData, filterState }) => {
     const loaded = () => {
 
         const index = gameData.filter(game => {
-            if(game.genre === filterState.tag){
+            if(game.genre === filterState.tag && game.platform.includes(filterState.platform)){
                 return game
-            } else if (filterState.tag === "Tag"){
+            } else if (game.genre === filterState.tag && filterState.platform === "Platform"){
+                return game
+            } else if (game.platform.includes(filterState.platform) && filterState.tag === "Tag"){
+                return game
+            } else if (filterState.tag === "Tag" && filterState.platform === "Platform"){
                 return game
             }
         })
@@ -26,7 +30,7 @@ const Index = ({ setIdState, gameData, filterState }) => {
         ))
     }
 
-    
+
     return(
         <>
             {gameData ? loaded() : loading()}
