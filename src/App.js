@@ -4,13 +4,20 @@ import Header from './components/Header';
 import Index from './components/Index';
 import GameDisplay from './components/GameDisplay';
 
+
 function App() {
 
-  const [indexState, setIndexState] = useState(null)
+  const [gameData, setGameData] = useState(null)
   const [idState, setIdState] = useState(null)
+  const [filterState, setFilterState] = useState({
+    tag : "Tag",
+    platform : "",
+    search : ""
+  })
 
 
-  const url = 'https://free-to-play-games-database.p.rapidapi.com/api/games';
+
+  const URL = 'https://free-to-play-games-database.p.rapidapi.com/api/games';
 
   const options = {
     method: 'GET',
@@ -22,23 +29,37 @@ function App() {
 
   const getGameData = async() => {
     try {
-      const res = await fetch(url, options)
+      const res = await fetch(URL, options)
       const data = await res.json()
-      setIndexState(data)
+      setGameData(data)
     } catch(err) {
       console.log(err)
     }
   }
 
+
+
   useEffect(() => {
     getGameData()
   }, [])
 
+
+  
   return (
     <div className="App">
-      <Header />
-      <Index indexState = {indexState} setIdState = {setIdState}/>
-      <GameDisplay idState = {idState} indexState = {indexState}/>
+      <Header 
+        filterState = {filterState}
+        setFilterState = {setFilterState} 
+      />
+      <Index 
+        setIdState = {setIdState} 
+        filterState = {filterState}
+        gameData = {gameData}
+      />
+      <GameDisplay 
+        idState = {idState}
+        gameData = {gameData}
+      />
     </div>
   )
 }
