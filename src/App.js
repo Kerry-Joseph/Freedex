@@ -10,14 +10,21 @@ function App() {
   const [gameData, setGameData] = useState(null)
   const [idState, setIdState] = useState(null)
   const [filterState, setFilterState] = useState({
+    sort: "Sort",
     tag : "Tag",
     platform : "Platform",
     search : ""
   })
+  
+  const selectedSortUrl = () => {
+    const splitCookieBySemi = document.cookie.split(";")
+    const urlCookie = splitCookieBySemi.filter(cookie => cookie.includes("url"))[0].split("=")
+    const url = urlCookie[2] ? urlCookie[1] + "=" + urlCookie[2] : urlCookie[1]
+    return url
+  }
 
 
-
-  const URL = 'https://free-to-play-games-database.p.rapidapi.com/api/games';
+  let URL = selectedSortUrl()
 
   const options = {
     method: 'GET',
@@ -42,6 +49,7 @@ function App() {
   useEffect(() => {
     getGameData()
   }, [])
+
 
 
   

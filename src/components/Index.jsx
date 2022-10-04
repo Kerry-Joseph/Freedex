@@ -8,13 +8,25 @@ const Index = ({ setIdState, gameData, filterState }) => {
     const loaded = () => {
 
         const index = gameData.filter(game => {
-            if(game.genre === filterState.tag && game.platform.includes(filterState.platform)){
+            // all
+            if(game.genre === filterState.tag && game.platform.includes(filterState.platform) && game.title.includes(filterState.search)){
                 return game
-            } else if (game.genre === filterState.tag && filterState.platform === "Platform"){
+            // doubles
+            } else if (game.genre === filterState.tag && game.platform.includes(filterState.platform) && filterState.search === ""){
                 return game
-            } else if (game.platform.includes(filterState.platform) && filterState.tag === "Tag"){
+            } else if (game.genre === filterState.tag && game.title.includes(filterState.search) && filterState.platform === "Platform"){
                 return game
-            } else if (filterState.tag === "Tag" && filterState.platform === "Platform"){
+            } else if (game.genre === game.platform.includes(filterState.platform) && game.title.includes(filterState.search) && filterState.tag === "Tag"){
+                return game
+            // solos
+            } else if (game.genre === filterState.tag && filterState.tag === "Tag" && filterState.search === ""){
+                return game
+            } else if (game.platform.includes(filterState.platform) && filterState.tag === "Tag" && filterState.search === ""){
+                return game
+            } else if (game.title.includes(filterState.search) && filterState.tag === "Tag" && filterState.platform === "Platform"){
+                return game
+            // none
+            } else if (filterState.tag === "Tag" && filterState.platform === "Platform" && filterState.search === ""){
                 return game
             }
         })

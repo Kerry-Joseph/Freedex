@@ -1,3 +1,5 @@
+import { useEffect } from "react"
+
 const Header = ({ filterState, setFilterState }) => {
     
     // tag list dropdown
@@ -18,6 +20,7 @@ const Header = ({ filterState, setFilterState }) => {
         })
     }
 
+
     // tag list dropdown
     const platformList = document.querySelector("#platform-list")
     const showPlatforms = () => {
@@ -37,11 +40,65 @@ const Header = ({ filterState, setFilterState }) => {
     }
 
 
+    // sort list dropdown
+    const sortList = document.querySelector("#sort-list")
+    const showSorts = () => {
+        if(sortList.style.display === "none"){
+            sortList.style.display = "block"
+        } else {
+            sortList.style.display = "none"
+        }
+    }
+
+
+    // filter search bar handleChange
+    const handleChange = e => {
+        setFilterState(prev => {
+            return {
+                ...prev, search: e.target.value
+            }
+        })
+    }
+
+    
+    // sort url cookie functions
+    const noSortUrlCookie = () => {
+        document.cookie = "url=https://free-to-play-games-database.p.rapidapi.com/api/games;path=/"
+        window.location.reload()
+    }
+    const releaseDatetSortUrlCookie = () => {
+        document.cookie = "url=https://free-to-play-games-database.p.rapidapi.com/api/games?sort-by=release-date;path=/"
+        window.location.reload()
+    }
+    const popularitySortUrlCookie = () => {
+        document.cookie = "url=https://free-to-play-games-database.p.rapidapi.com/api/games?sort-by=popularity;path=/"
+        window.location.reload()
+    }
+    const alphabeticalSortUrlCookie = () => {
+        document.cookie = "url=https://free-to-play-games-database.p.rapidapi.com/api/games?sort-by=alphabetical;path=/"
+        window.location.reload()
+    }
+    const relevanceSortUrlCookie = () => {
+        document.cookie = "url=https://free-to-play-games-database.p.rapidapi.com/api/games?sort-by=relevance;path=/"
+        window.location.reload()
+    }
+
     
     return (
         <div>
+            <button onClick={() => popularitySortUrlCookie()}>click</button>
             <div>
-                <h1 onClick={() => showTags()}>{filterState.tag}</h1>
+                <h1 onClick={() => showSorts()} style={{color: "red"}}>{filterState.sort}</h1>
+                <ul style={{display: "none"}} id="sort-list">
+                    <li onClick={() => noSortUrlCookie()}>Sort</li>
+                    <li onClick={() => releaseDatetSortUrlCookie()}>Release Date</li>
+                    <li onClick={() => popularitySortUrlCookie()}>Popularity</li>
+                    <li onClick={() => alphabeticalSortUrlCookie()}>Alphabetical</li> 
+                    <li onClick={() => relevanceSortUrlCookie()}>Relevance</li> 
+                </ul>
+            </div>
+            <div>
+                <h1 onClick={() => showTags()} style={{color: "red"}}>{filterState.tag}</h1>
                 <ul style={{display: "none"}} id="tag-list" onClick={handleTagClick}>
                     <li>Tag</li>
                     <li>MMOARPG</li>
@@ -62,13 +119,16 @@ const Header = ({ filterState, setFilterState }) => {
                 </ul>
             </div>
             <div>
-                <h1 onClick={() => showPlatforms()}>{filterState.platform}</h1>
+                <h1 onClick={() => showPlatforms()} style={{color: "red"}}>{filterState.platform}</h1>
                 <ul style={{display: "none"}} id="platform-list" onClick={handlePlatformClick}>
                     <li>Platform</li>
                     <li>PC</li>
                     <li>Browser</li> 
                 </ul>
             </div>
+            <form>
+                <input type="text" placeholder="search..." value={filterState.search} onChange={handleChange}/>
+            </form>
         </div>
     )
 }
