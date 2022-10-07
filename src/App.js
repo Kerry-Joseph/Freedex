@@ -17,10 +17,18 @@ function App() {
   })
   
   const selectedSortUrl = () => {
-    const splitCookieBySemi = document.cookie.split(";")
-    const urlCookie = splitCookieBySemi.filter(cookie => cookie.includes("url"))[0].split("=")
-    const url = urlCookie[2] ? urlCookie[1] + "=" + urlCookie[2] : urlCookie[1]
-    return url
+    const cookieSplitBySemi = document.cookie.split(";")
+    const urlCookie = cookieSplitBySemi.filter(cookie => cookie.includes("url"))
+    if(urlCookie.length === 0){
+      document.cookie = "url=https://free-to-play-games-database.p.rapidapi.com/api/games;path=/"
+      const urlCookieSplitByEquals = urlCookie[0].split("=")
+      const url = urlCookieSplitByEquals[2] ? urlCookieSplitByEquals[1] + "=" + urlCookieSplitByEquals[2] : urlCookieSplitByEquals[1]
+      return url
+    } else {
+      const urlCookieSplitByEquals = urlCookie[0].split("=")
+      const url = urlCookieSplitByEquals[2] ? urlCookieSplitByEquals[1] + "=" + urlCookieSplitByEquals[2] : urlCookieSplitByEquals[1]
+      return url
+    }
   }
 
 
@@ -66,6 +74,7 @@ function App() {
       />
       <GameDisplay 
         idState = {idState}
+        setIdState = {setIdState}
         gameData = {gameData}
       />
     </div>
