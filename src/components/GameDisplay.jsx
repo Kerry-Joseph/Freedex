@@ -17,7 +17,7 @@ const GameDisplay = ({ idState, setIdState, gameData }) => {
             return (
                 <div 
                 className="fixed flex flex-col text-center w-screen h-screen top-1/2 
-                left-1/2 -translate-x-1/2 -translate-y-1/2 items-center overflow-auto pt-16 
+                left-1/2 -translate-x-1/2 -translate-y-1/2 items-center justify-center overflow-auto pt-16 
                 bg-FGI_white lg:relative lg:left-0 lg:top-0 lg:translate-x-0 lg:translate-y-0 
                 lg:w-[90rem]">
                     <p onClick={() => setIdState(null)} 
@@ -26,32 +26,36 @@ const GameDisplay = ({ idState, setIdState, gameData }) => {
                         X
                     </p>
                     <h1 
-                    className="text-2xl pt-4 font-bold text-FGI_dark_blue lg:p-0 lg:text-3xl 
+                    className="text-2xl pt-4 font-bold text-FGI_dark_blue md:p-0 md:text-4xl 
                     lg:font-extrabold">
                         {game[0].title} ({gameYear})
                     </h1>
                     <a target="_blank" rel="noreferrer" href={game[0].game_url} 
                     className="w-11/12 text-center rounded-xl my-10 lg:relative">
-                        <p 
+                        <div 
                         className="bg-FGI_blue rounded-t-xl font-semibold lg:absolute lg:text-7xl 
                         lg:bg-[rgba(0,0,0,0)] lg:hover:text-FGI_blue lg:hover:bg-[rgba(0,0,0,.5)] 
                         lg:w-full lg:h-full lg:rounded-xl lg:font-black lg:pt-1/2 lg:tracking-widest 
-                        lg:text-[rgba(0,0,0,0)]">
-                            Play Now
-                        </p>
+                        lg:text-[rgba(0,0,0,0)] transition">
+                            <p 
+                            className="lg:absolute lg:left-1/2 lg:top-1/2 lg:-translate-y-1/2 
+                            lg:-translate-x-1/2 lg:w-3/4 lg:animate-pulse">
+                                Play Now
+                            </p>
+                        </div>
                         <img src={game[0].thumbnail} alt="game thumbnail" 
                         className="rounded-b-xl w-full lg:rounded-xl"/>
                     </a>
                     <p 
-                    className="w-11/12 font-semibold text-lg lg:text-start lg:text-xl">
+                    className="w-11/12 font-semibold text-lg md:text-start md:text-3xl lg:text-2xl">
                         {game[0].short_description}
                     </p>
                     <p 
-                    className="text-start w-11/12 pt-4 font-semibold">
+                    className="text-[rgba(0,0,0,0)] md:text-FGI_dark_blue text-start w-11/12 pt-4 font-semibold">
                         Published By: {game[0].publisher}
                     </p>
                     <p 
-                    className="text-start w-11/12 font-semibold">
+                    className="text-[rgba(0,0,0,0)] md:text-FGI_dark_blue text-start w-11/12 font-semibold">
                         Developed By: {game[0].developer}
                     </p>
                 </div>
