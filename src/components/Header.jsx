@@ -1,6 +1,4 @@
-import { useEffect } from "react"
-
-const Header = ({ filterState, setFilterState }) => {
+const Header = ({ filterState, setFilterState, showSortOption }) => {
     
     // tag list dropdown
     const tagList = document.querySelector("#tag-list")
@@ -19,6 +17,7 @@ const Header = ({ filterState, setFilterState }) => {
             }
         })
     }
+
 
 
     // tag list dropdown
@@ -40,6 +39,7 @@ const Header = ({ filterState, setFilterState }) => {
     }
 
 
+
     // sort list dropdown
     const sortList = document.querySelector("#sort-list")
     const showSorts = () => {
@@ -49,6 +49,7 @@ const Header = ({ filterState, setFilterState }) => {
             sortList.style.display = "none"
         }
     }
+
 
 
     // filter search bar handleChange
@@ -61,7 +62,8 @@ const Header = ({ filterState, setFilterState }) => {
     }
 
     
-    // sort url cookie functions
+    
+    // sort url cookie functions 
     const noSortUrlCookie = () => {
         document.cookie = "url=https://free-to-play-games-database.p.rapidapi.com/api/games;path=/"
         window.location.reload()
@@ -85,10 +87,12 @@ const Header = ({ filterState, setFilterState }) => {
 
     
     return (
-        <div>
-            <button onClick={() => popularitySortUrlCookie()}>click</button>
-            <div>
-                <h1 onClick={() => showSorts()} style={{color: "red"}}>{filterState.sort}</h1>
+        <div 
+        className="fixed top-0 bg-FGI_dark_blue flex h-16 w-full items-center flex-wrap justify-end
+        text-FGI_blue font-bold">
+            <div
+            className="px-2">
+                <h1 onClick={() => showSorts()}>{showSortOption()}</h1>
                 <ul style={{display: "none"}} id="sort-list">
                     <li onClick={() => noSortUrlCookie()}>Sort</li>
                     <li onClick={() => releaseDatetSortUrlCookie()}>Release Date</li>
@@ -97,8 +101,9 @@ const Header = ({ filterState, setFilterState }) => {
                     <li onClick={() => relevanceSortUrlCookie()}>Relevance</li> 
                 </ul>
             </div>
-            <div>
-                <h1 onClick={() => showTags()} style={{color: "red"}}>{filterState.tag}</h1>
+            <div
+            className="px-2">
+                <h1 onClick={() => showTags()}>{filterState.tag}</h1>
                 <ul style={{display: "none"}} id="tag-list" onClick={handleTagClick}>
                     <li>Tag</li>
                     <li>MMOARPG</li>
@@ -118,8 +123,9 @@ const Header = ({ filterState, setFilterState }) => {
                     <li>ARPG</li>
                 </ul>
             </div>
-            <div>
-                <h1 onClick={() => showPlatforms()} style={{color: "red"}}>{filterState.platform}</h1>
+            <div
+            className="px-2 pr-4">
+                <h1 onClick={() => showPlatforms()}>{filterState.platform}</h1>
                 <ul style={{display: "none"}} id="platform-list" onClick={handlePlatformClick}>
                     <li>Platform</li>
                     <li>PC</li>
@@ -127,7 +133,8 @@ const Header = ({ filterState, setFilterState }) => {
                 </ul>
             </div>
             <form>
-                <input type="text" placeholder="search..." value={filterState.search} onChange={handleChange}/>
+                <input type="text" placeholder="search..." value={filterState.search} onChange={handleChange} 
+                className="w-screen"/>
             </form>
         </div>
     )

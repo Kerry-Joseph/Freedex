@@ -34,6 +34,21 @@ function App() {
 
   let URL = selectedSortUrl()
 
+
+  const showSortOption = () => {
+    if(URL === "https://free-to-play-games-database.p.rapidapi.com/api/games"){
+      return 'Sort'
+    } else if(URL === "https://free-to-play-games-database.p.rapidapi.com/api/games?sort-by=release-date"){
+      return 'Release Date'
+    } else if(URL === "https://free-to-play-games-database.p.rapidapi.com/api/games?sort-by=popularity"){
+      return 'Popularity'
+    } else if(URL === "https://free-to-play-games-database.p.rapidapi.com/api/games?sort-by=alphabetical"){
+      return 'Alphabetical'
+    } else if(URL === "https://free-to-play-games-database.p.rapidapi.com/api/games?sort-by=relevance"){
+      return 'Relevance'
+    }
+  }
+
   const options = {
     method: 'GET',
     headers: {
@@ -62,10 +77,11 @@ function App() {
 
   
   return (
-    <div className="App">
+    <div className="App flex h-screen">
       <Header 
         filterState = {filterState}
-        setFilterState = {setFilterState} 
+        setFilterState = {setFilterState}
+        showSortOption = {showSortOption} 
       />
       <Index 
         setIdState = {setIdState} 
