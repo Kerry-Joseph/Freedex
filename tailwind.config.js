@@ -8,6 +8,7 @@ module.exports = {
       'FGI_white': '#f4ebd9',
       'FGI_blue' : '#44ccff',
       'FGI_dark_blue' : '#1b4079',
+      'black': '#000000',
     },
     extend: {},
   },
