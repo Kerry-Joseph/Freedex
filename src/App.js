@@ -7,15 +7,18 @@ import GameDisplay from './components/GameDisplay';
 
 function App() {
 
+  // states ----
   const [gameData, setGameData] = useState(null)
-  const [idState, setIdState] = useState(null)
+  const [idState, setIdState] = useState(null) // game id for game display
   const [filterState, setFilterState] = useState({
-    sort: "Sort",
-    tag : "Tag",
-    platform : "Platform",
+    sort: "None",
+    tag : "None",
+    platform : "None",
     search : ""
   })
   
+
+
   const selectedSortUrl = () => {
     const cookieSplitBySemi = document.cookie.split(";")
     const urlCookie = cookieSplitBySemi.filter(cookie => cookie.includes("url"))
@@ -37,7 +40,7 @@ function App() {
 
   const showSortOption = () => {
     if(URL === "https://free-to-play-games-database.p.rapidapi.com/api/games"){
-      return 'Sort'
+      return 'None'
     } else if(URL === "https://free-to-play-games-database.p.rapidapi.com/api/games?sort-by=release-date"){
       return 'Release Date'
     } else if(URL === "https://free-to-play-games-database.p.rapidapi.com/api/games?sort-by=popularity"){
@@ -75,9 +78,17 @@ function App() {
 
 
 
+  const changeGridLayoutIfGameDisplayIsActive = () => {
+    if(idState){
+      return "grid-cols-[1fr_33%]"
+    } else {
+      return "grid-cols-1"
+    }
+  }
+
   
   return (
-    <div className="App flex h-screen">
+    <div className={`App grid ${changeGridLayoutIfGameDisplayIsActive()} grid-rows-[4rem_auto] h-screen overflow-x-hidden`}>
       <Header 
         filterState = {filterState}
         setFilterState = {setFilterState}
