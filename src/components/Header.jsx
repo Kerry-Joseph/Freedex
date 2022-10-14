@@ -11,11 +11,15 @@ const Header = ({ filterState, setFilterState, showSortOption }) => {
     }
 
     const handleTagClick = e => {
-        setFilterState(prev => { 
-            return {
-                ...prev, tag : e.target.innerHTML
-            }
-        })
+        if(e.target.innerHTML.length < 20){
+            setFilterState(prev => { 
+                return {
+                    ...prev, tag : e.target.innerHTML
+                }
+            })
+        } else {
+            return
+        }
     }
 
 
@@ -31,11 +35,15 @@ const Header = ({ filterState, setFilterState, showSortOption }) => {
     }
 
     const handlePlatformClick = e => {
-        setFilterState(prev => { 
-            return {
-                ...prev, platform : e.target.innerHTML
-            }
-        })
+        if(e.target.innerHTML.length < 10) {
+            setFilterState(prev => { 
+                return {
+                    ...prev, platform : e.target.innerHTML
+                }
+            })
+        } else {
+            return
+        }
     }
 
 
@@ -87,25 +95,44 @@ const Header = ({ filterState, setFilterState, showSortOption }) => {
 
     
     return (
-        <div 
-        className="fixed top-0 bg-FGI_dark_blue flex h-16 w-full items-center flex-wrap justify-end
+        <div
+        className="top-0 left-0 bg-FGI_dark_blue grid grid-cols-[1fr_10rem_10rem_12rem] h-16 items-center
         text-FGI_blue font-bold">
+            <h1>Freedex</h1>
+            {/* sort */}
             <div
-            className="px-2">
-                <h1 onClick={() => showSorts()}>{showSortOption()}</h1>
-                <ul style={{display: "none"}} id="sort-list">
-                    <li onClick={() => noSortUrlCookie()}>Sort</li>
+            className="relative">
+                <h1 onClick={() => showSorts()}
+                className="relative">
+                    Sort: 
+                    <span
+                    className="absolute right-[4.2rem] translate-x-1/2 w-max">
+                        {showSortOption()}
+                    </span>
+                </h1>
+                <ul style={{display: "none"}} id="sort-list"
+                className="absolute top-10 right-30 text-FGI_dark_blue rounded-xl bg-FGI_white border">
+                    <li onClick={() => noSortUrlCookie()}>None</li>
                     <li onClick={() => releaseDatetSortUrlCookie()}>Release Date</li>
                     <li onClick={() => popularitySortUrlCookie()}>Popularity</li>
                     <li onClick={() => alphabeticalSortUrlCookie()}>Alphabetical</li> 
                     <li onClick={() => relevanceSortUrlCookie()}>Relevance</li> 
                 </ul>
             </div>
+            {/* tag */}
             <div
-            className="px-2">
-                <h1 onClick={() => showTags()}>{filterState.tag}</h1>
-                <ul style={{display: "none"}} id="tag-list" onClick={handleTagClick}>
-                    <li>Tag</li>
+            className="relative">
+                <h1 onClick={() => showTags()} 
+                className="relative">
+                    Tag: 
+                    <span 
+                    className="absolute right-[4.5rem] translate-x-1/2 w-max">
+                        {filterState.tag}
+                    </span>
+                </h1>
+                <ul style={{display: "none"}} id="tag-list" onClick={handleTagClick}
+                className="absolute top-20 text-FGI_dark_blue rounded-xl bg-FGI_white border">
+                    <li>None</li>
                     <li>MMOARPG</li>
                     <li>Shooter</li>
                     <li>Strategy</li>
@@ -123,16 +150,27 @@ const Header = ({ filterState, setFilterState, showSortOption }) => {
                     <li>ARPG</li>
                 </ul>
             </div>
+            {/* platform */}
             <div
-            className="px-2 pr-4">
-                <h1 onClick={() => showPlatforms()}>{filterState.platform}</h1>
-                <ul style={{display: "none"}} id="platform-list" onClick={handlePlatformClick}>
-                    <li>Platform</li>
+            className="relative">
+                <h1 onClick={() => showPlatforms()}
+                className="relative">
+                    Platform: 
+                    <span 
+                    className="absolute right-[5.2rem] translate-x-1/2">
+                        {filterState.platform}
+                    </span>
+                </h1>
+                <ul style={{display: "none"}} id="platform-list" onClick={handlePlatformClick}
+                className="absolute top-0 text-FGI_dark_blue rounded-xl bg-FGI_white border">
+                    <li>None</li>
                     <li>PC</li>
                     <li>Browser</li> 
                 </ul>
             </div>
-            <form>
+            {/* searchbar */}
+            <form 
+            className="col-span-4">
                 <input type="text" placeholder="search..." value={filterState.search} onChange={handleChange} 
                 className="w-screen"/>
             </form>
