@@ -88,7 +88,7 @@ function App() {
 
   
   return (
-    <div className={`App grid ${changeGridLayoutIfGameDisplayIsActive()} grid-rows-[4rem_auto] h-screen overflow-x-hidden`}>
+    <div className={`App grid ${changeGridLayoutIfGameDisplayIsActive()} grid-rows-[6rem_auto] h-screen overflow-x-hidden`}>
       <Header 
         filterState = {filterState}
         setFilterState = {setFilterState}
