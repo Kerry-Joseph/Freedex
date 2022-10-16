@@ -194,7 +194,7 @@ const Header = ({ filterState, setFilterState, showSortOption }) => {
             </div>
             {/* searchbar */}
             <form 
-            className="col-span-5 px-3">
+            className="col-span-5 px-4">
                 <input type="text" placeholder="search..." value={filterState.search} onChange={handleChange} 
                 className="w-full rounded-md h-8 px-3 bg-FGI_white text-FGI_dark_blue focus:outline-none 
                 focus:border-FGI_blue focus:border-2"/>

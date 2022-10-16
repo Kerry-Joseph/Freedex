@@ -18,7 +18,7 @@ const GameDisplay = ({ idState, setIdState, gameData }) => {
                 <div 
                 className="fixed col-start-2 row-start-1 row-span-2 flex flex-col text-center 
                 w-screen h-screen top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 items-center 
-                justify-center overflow-auto pt-16 bg-FGI_white lg:relative lg:left-0 lg:top-0 
+                md:justify-center overflow-auto pt-16 bg-FGI_white lg:relative lg:left-0 lg:top-0 
                 lg:translate-x-0 lg:translate-y-0 lg:w-full">
                     {/* exit button */}
                     <p onClick={() => setIdState(null)} 
@@ -51,16 +51,16 @@ const GameDisplay = ({ idState, setIdState, gameData }) => {
                     </a> 
                     {/* game info */}
                     <p 
-                    className="w-11/12 font-semibold text-lg md:text-start md:text-3xl lg:text-2xl">
+                    className="w-11/12 font-semibold text-lg text-start md:text-3xl lg:text-2xl">
                         {game[0].short_description}
                     </p>
                     <p 
-                    className="text-[rgba(0,0,0,0)] md:text-FGI_dark_blue text-start w-11/12 
+                    className="text-FGI_dark_blue text-start w-11/12 
                     pt-4 font-semibold">
                         Published By: {game[0].publisher}
                     </p>
                     <p 
-                    className="text-[rgba(0,0,0,0)] md:text-FGI_dark_blue text-start w-11/12 
+                    className="text-FGI_dark_blue text-start w-11/12 
                     font-semibold">
                         Developed By: {game[0].developer}
                     </p>

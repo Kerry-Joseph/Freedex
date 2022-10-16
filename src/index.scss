@@ -16,3 +16,22 @@ code {
     monospace;
 }
 
+#index {
+  &::-webkit-scrollbar {
+    background-color: #1b4079;
+  }
+  &::-webkit-scrollbar-thumb {
+    background-color: #44ccff;
+    border-radius: .4rem;
+  }
+}
+.index-description {
+  &::-webkit-scrollbar {
+    background-color: #f4ebd9;
+  }
+  &::-webkit-scrollbar-thumb {
+    background-color: #1b4079;
+    border-radius: .4rem;
+  }
+}
+
