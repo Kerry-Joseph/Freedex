@@ -2,11 +2,14 @@ const Header = ({ filterState, setFilterState, showSortOption }) => {
     
     // tag list dropdown
     const tagList = document.querySelector("#tag-list")
+    const tagSelection = document.querySelector("#tag-selection")
     const showTags = () => {
         if(tagList.style.display === "none"){
             tagList.style.display = "block"
+            tagSelection.style.borderBottom = "solid .18rem #44ccff" 
         } else {
             tagList.style.display = "none"
+            tagSelection.style.borderBottom = "solid 0 #44ccff"
         }
     }
 
@@ -24,13 +27,16 @@ const Header = ({ filterState, setFilterState, showSortOption }) => {
 
 
 
-    // tag list dropdown
+    // platform list dropdown
     const platformList = document.querySelector("#platform-list")
+    const platformSelection = document.querySelector("#platform-selection")
     const showPlatforms = () => {
         if(platformList.style.display === "none"){
             platformList.style.display = "block"
+            platformSelection.style.borderBottom = "solid .18rem #44ccff" 
         } else {
             platformList.style.display = "none"
+            platformSelection.style.borderBottom = "solid 0 #44ccff"
         }
     }
 
@@ -50,11 +56,14 @@ const Header = ({ filterState, setFilterState, showSortOption }) => {
 
     // sort list dropdown
     const sortList = document.querySelector("#sort-list")
+    const sortSelection = document.querySelector("#sort-selection")
     const showSorts = () => {
         if(sortList.style.display === "none"){
             sortList.style.display = "block"
+            sortSelection.style.borderBottom = "solid .18rem #44ccff" 
         } else {
             sortList.style.display = "none"
+            sortSelection.style.borderBottom = "solid 0 #44ccff"
         }
     }
 
@@ -114,13 +123,13 @@ const Header = ({ filterState, setFilterState, showSortOption }) => {
                     className="absolute -top-1.5 left-0.5 text-xs pl-1 lg:text-md">
                         Sort: 
                     </span>
-                    <span
+                    <span id="sort-selection"
                     className="absolute -bottom-1.5 right-1/2 translate-x-1/2 w-max">
                         {showSortOption()}
                     </span>
                 </div>
                 <ul style={{display: "none"}} id="sort-list"
-                className="absolute top-10 right-30 text-FGI_dark_blue rounded-xl bg-FGI_white border">
+                className="absolute top-10 w-full text-FGI_dark_blue rounded-b-xl bg-FGI_white border-b border-x py-1 px-2">
                     <li onClick={() => noSortUrlCookie()}>None</li>
                     <li onClick={() => releaseDatetSortUrlCookie()}>Release Date</li>
                     <li onClick={() => popularitySortUrlCookie()}>Popularity</li>
@@ -137,13 +146,13 @@ const Header = ({ filterState, setFilterState, showSortOption }) => {
                     className="absolute -top-1.5 left-0.5 text-xs pl-1 lg:text-md">
                         Tag: 
                     </span>
-                    <span 
+                    <span id="tag-selection"
                     className="absolute -bottom-1.5 right-1/2 translate-x-1/2 w-max">
                         {filterState.tag}
                     </span>
                 </h1>
-                <ul style={{display: "none"}} id="tag-list" onClick={handleTagClick}
-                className="absolute top-20 text-FGI_dark_blue rounded-xl bg-FGI_white border">
+                <ul id="tag-list" onClick={handleTagClick}
+                className="absolute hidden top-10 text-FGI_dark_blue rounded-b-xl bg-FGI_white w-full border-b border-x py-1 px-2">
                     <li>None</li>
                     <li>MMOARPG</li>
                     <li>Shooter</li>
@@ -171,13 +180,13 @@ const Header = ({ filterState, setFilterState, showSortOption }) => {
                     className="absolute -top-1.5 left-0.5 text-xs pl-1 lg:text-md">
                         Platform: 
                     </span>
-                    <span 
+                    <span id="platform-selection"
                     className="absolute -bottom-1.5 right-1/2 translate-x-1/2">
                         {filterState.platform}
                     </span>
                 </h1>
-                <ul style={{display: "none"}} id="platform-list" onClick={handlePlatformClick}
-                className="absolute top-0 text-FGI_dark_blue rounded-xl bg-FGI_white border">
+                <ul id="platform-list" onClick={handlePlatformClick}
+                className="hidden absolute top-10 w-full text-FGI_dark_blue rounded-b-xl bg-FGI_white border-b border-x py-1 px-2">
                     <li>None</li>
                     <li>PC</li>
                     <li>Browser</li> 
