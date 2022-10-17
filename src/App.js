@@ -91,17 +91,17 @@ function App() {
     const index = gameData.filter(game => {
       // all filters active
       if(game.genre === filterState.tag && game.platform.includes(filterState.platform) 
-          && game.title.includes(filterState.search)){
+          && game.title.toLowerCase().includes(filterState.search.toLowerCase())){
               return game
       // two filters active
       } else if (game.genre === filterState.tag && game.platform.includes(filterState.platform) 
           && filterState.search === ""){
               return game
-      } else if (game.genre === filterState.tag && game.title.includes(filterState.search) 
+      } else if (game.genre === filterState.tag && game.title.toLowerCase().includes(filterState.search.toLowerCase()) 
           && filterState.platform === "None"){
               return game
       } else if (game.genre === game.platform.includes(filterState.platform) 
-          && game.title.includes(filterState.search) && filterState.tag === "None"){
+          && game.title.toLowerCase().includes(filterState.search.toLowerCase()) && filterState.tag === "None"){
               return game
       // one filter active
       } else if (game.genre === filterState.tag && filterState.tag === "None" 
@@ -110,7 +110,7 @@ function App() {
       } else if (game.platform.includes(filterState.platform) && filterState.tag === "None" 
           && filterState.search === ""){
               return game
-      } else if (game.title.includes(filterState.search) && filterState.tag === "None" 
+      } else if (game.title.toLowerCase().includes(filterState.search.toLowerCase()) && filterState.tag === "None" 
           && filterState.platform === "None"){
               return game
       // none
