@@ -1,4 +1,8 @@
+import { useState } from "react"
+
 const Header = ({ filterState, setFilterState, showSortOption }) => {
+
+    const [filterTextState, setFilterTextState] = useState("add filters")
     
     // tag list dropdown
     const tagList = document.querySelector("#tag-list")
@@ -101,8 +105,16 @@ const Header = ({ filterState, setFilterState, showSortOption }) => {
         document.cookie = "url=https://free-to-play-games-database.p.rapidapi.com/api/games?sort-by=relevance;path=/"
         window.location.reload()
     }
-
     
+
+    const filterNameChange = () => {
+        if(filterTextState === "filters:"){
+            setFilterTextState("add filters")
+        } else if(filterTextState === "add filters") {
+            setFilterTextState("filters:")
+        }
+    }
+
     return (
         <div
         className="top-0 left-0 bg-FGI_dark_blue grid grid-cols-3 
@@ -111,8 +123,9 @@ const Header = ({ filterState, setFilterState, showSortOption }) => {
             <h1 className="hidden md:block pl-5 font-black text-3xl">
                 Freedex
             </h1>
-            <h2 className="hidden md:block justify-self-end self-end pr-7 font-black text-xl">
-                filters:
+            <h2 onClick={() => filterNameChange()}
+            className="hidden cursor-pointer md:block justify-self-end self-end pr-7 font-black text-xl">
+                {filterTextState}
             </h2>
             {/* sort */}
             <div
