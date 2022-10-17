@@ -16,15 +16,32 @@ code {
     monospace;
 }
 
+html {
+  background: #1b4079;
+}
+
 #index {
   &::-webkit-scrollbar {
     background-color: #1b4079;
+    width: 8px;
   }
   &::-webkit-scrollbar-thumb {
     background-color: #44ccff;
     border-radius: .4rem;
   }
 }
+
+#game-display {
+  &::-webkit-scrollbar {
+    background: #f4ebd9;
+    width: 8px;
+  }
+  &::-webkit-scrollbar-thumb {
+    background-color: #44ccff;
+    border-radius: .4rem;
+  }
+}
+
 .index-description {
   &::-webkit-scrollbar {
     background-color: #f4ebd9;

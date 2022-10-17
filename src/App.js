@@ -78,34 +78,94 @@ function App() {
 
 
 
-  const changeGridLayoutIfGameDisplayIsActive = () => {
-    if(idState){
-      return "grid-cols-[1fr_33%]"
-    } else {
-      return "grid-cols-1"
-    }
-  }
+ 
 
   
-  return (
-    <div className={`App grid ${changeGridLayoutIfGameDisplayIsActive()} grid-rows-[6rem_auto] h-screen overflow-x-hidden`}>
-      <Header 
-        filterState = {filterState}
-        setFilterState = {setFilterState}
-        showSortOption = {showSortOption} 
-      />
-      <Index 
-        setIdState = {setIdState} 
-        filterState = {filterState}
-        gameData = {gameData}
-      />
-      <GameDisplay 
-        idState = {idState}
-        setIdState = {setIdState}
-        gameData = {gameData}
-      />
+  
+  
+  const loading = () => {
+    return <p>loading...</p>
+  }
+  
+  const loaded = () => {
+    const index = gameData.filter(game => {
+      // all filters active
+      if(game.genre === filterState.tag && game.platform.includes(filterState.platform) 
+          && game.title.includes(filterState.search)){
+              return game
+      // two filters active
+      } else if (game.genre === filterState.tag && game.platform.includes(filterState.platform) 
+          && filterState.search === ""){
+              return game
+      } else if (game.genre === filterState.tag && game.title.includes(filterState.search) 
+          && filterState.platform === "None"){
+              return game
+      } else if (game.genre === game.platform.includes(filterState.platform) 
+          && game.title.includes(filterState.search) && filterState.tag === "None"){
+              return game
+      // one filter active
+      } else if (game.genre === filterState.tag && filterState.tag === "None" 
+          && filterState.search === ""){
+              return game
+      } else if (game.platform.includes(filterState.platform) && filterState.tag === "None" 
+          && filterState.search === ""){
+              return game
+      } else if (game.title.includes(filterState.search) && filterState.tag === "None" 
+          && filterState.platform === "None"){
+              return game
+      // none
+      } else if (filterState.tag === "None" && filterState.platform === "None" 
+          && filterState.search === ""){
+              return game
+      }
+    })
+    
+    const filteredIDs = index.map(game => game.id)
+
+    const changeGridLayoutIfGameDisplayIsActive = () => {
+      if(idState){
+        return "grid-cols-[1fr_33%]"
+      } else {
+        return "grid-cols-1"
+      }
+    }
+
+    return (
+      <div className={`App grid max-w-[1280px] w-[1280px] ${changeGridLayoutIfGameDisplayIsActive()} 
+      grid-rows-[6rem_auto] h-screen overflow-x-hidden `}>
+        <Header 
+          filterState = {filterState}
+          setFilterState = {setFilterState}
+          showSortOption = {showSortOption} 
+        />
+        <Index 
+          index = {index}
+          setIdState = {setIdState} 
+          filterState = {filterState}
+          gameData = {gameData}
+        />
+        <GameDisplay 
+          filterState = {filterState}
+          filteredIDs = {filteredIDs}
+          idState = {idState}
+          setIdState = {setIdState}
+          gameData = {gameData}
+        />
+      </div>
+    )
+  }
+
+
+  return(
+    <div id="" className="flex justify-center">
+        {gameData ? loaded() : loading()}
     </div>
-  )
+  ) 
+
 }
+
+
+
+
 
 export default App;
