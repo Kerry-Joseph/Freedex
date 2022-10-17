@@ -118,7 +118,7 @@ const Header = ({ filterState, setFilterState, showSortOption }) => {
             <div
             className="relative">
                 <div onClick={() => showSorts()}
-                className="relative border-r h-6">
+                className="relative border-r h-6 cursor-pointer">
                     <span
                     className="absolute -top-1.5 left-0.5 text-xs pl-1 lg:text-md">
                         Sort: 
@@ -129,7 +129,8 @@ const Header = ({ filterState, setFilterState, showSortOption }) => {
                     </span>
                 </div>
                 <ul style={{display: "none"}} id="sort-list"
-                className="absolute top-10 w-full text-FGI_dark_blue rounded-b-xl bg-FGI_white border-b border-x py-1 px-2">
+                className="absolute top-10 w-full text-FGI_dark_blue rounded-b-xl bg-FGI_white 
+                border-b border-x py-1 px-2">
                     <li onClick={() => noSortUrlCookie()}>None</li>
                     <li onClick={() => releaseDatetSortUrlCookie()}>Release Date</li>
                     <li onClick={() => popularitySortUrlCookie()}>Popularity</li>
@@ -141,7 +142,7 @@ const Header = ({ filterState, setFilterState, showSortOption }) => {
             <div
             className="relative">
                 <h1 onClick={() => showTags()} 
-                className="relative border-r h-6">
+                className="relative border-r h-6 cursor-pointer">
                     <span
                     className="absolute -top-1.5 left-0.5 text-xs pl-1 lg:text-md">
                         Tag: 
@@ -152,7 +153,8 @@ const Header = ({ filterState, setFilterState, showSortOption }) => {
                     </span>
                 </h1>
                 <ul id="tag-list" onClick={handleTagClick}
-                className="absolute hidden top-10 text-FGI_dark_blue rounded-b-xl bg-FGI_white w-full border-b border-x py-1 px-2">
+                className="absolute hidden top-10 text-FGI_dark_blue rounded-b-xl bg-FGI_white w-full 
+                border-b border-x py-1 px-2">
                     <li>None</li>
                     <li>MMOARPG</li>
                     <li>Shooter</li>
@@ -175,7 +177,7 @@ const Header = ({ filterState, setFilterState, showSortOption }) => {
             <div
             className="relative">
                 <h1 onClick={() => showPlatforms()}
-                className="relative h-6">
+                className="relative h-6 cursor-pointer">
                     <span
                     className="absolute -top-1.5 left-0.5 text-xs pl-1 lg:text-md">
                         Platform: 
