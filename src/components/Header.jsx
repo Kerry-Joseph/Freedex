@@ -111,7 +111,7 @@ const Header = ({ filterState, setFilterState, showSortOption }) => {
             <h1 className="hidden md:block pl-5 font-black text-3xl">
                 Freedex
             </h1>
-            <h2 className="hidden md:block justify-self-end self-end pr-7 pb-1 font-black text-xl">
+            <h2 className="hidden md:block justify-self-end self-end pr-7 font-black text-xl">
                 filters:
             </h2>
             {/* sort */}
