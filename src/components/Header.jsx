@@ -124,15 +124,18 @@ export default function Header({ filterState, setFilterState, showSortOption }) 
     
     useEffect(() => {
         const filterTextElement = document.querySelector("#filter-text")
+        const freedexTitle = document.querySelector('#freedex-title')
         if(filtersOpen === 'start up'){
             filterTextElement.className = 
-                "hidden absolute top-2 right-[1.5rem] h-10 w-screen bg-FGI_dark_blue z-30 cursor-pointer md:flex items-end justify-end font-black text-xl"
+                "absolute top-2 right-0 pr-[1.5rem] h-10 w-screen bg-FGI_dark_blue z-30 cursor-pointer flex items-end justify-end font-black text-xl"
         } else if(filtersOpen){
             filterTextElement.className = 
-                "hidden absolute top-2 right-[31.5rem] h-10 w-screen bg-FGI_dark_blue z-30 cursor-pointer md:flex items-end justify-end font-black text-xl md:animate-open_filters"
+                "absolute -top-10 right-0 pr-[1.5rem] md:top-2 md:right-[31.5rem] h-10 w-screen bg-FGI_dark_blue z-30 cursor-pointer flex items-end justify-end font-black text-xl animate-open_filters_mobile md:animate-open_filters"
+            freedexTitle.className = 
+                "absolute -top-10 md:top-0 left-0 w-full flex h-[2.9rem] text-4xl items-end md:relative pl-5 font-black z-40 pointer-events-none animate-open_filters_mobile md:animate-none"
         } else {
             filterTextElement.className = 
-                "hidden absolute top-2 right-[1.5rem] h-10 w-screen bg-FGI_dark_blue z-30 cursor-pointer md:flex items-end justify-end font-black text-xl md:animate-close_filters"
+                "absolute top-2 right-[1.5rem] h-10 w-screen bg-FGI_dark_blue z-30 cursor-pointer flex items-end justify-end font-black text-xl md:animate-close_filters"
         }
     }, [filtersOpen])
 
@@ -142,7 +145,8 @@ export default function Header({ filterState, setFilterState, showSortOption }) 
         className={`top-0 left-0 bg-FGI_dark_blue grid grid-cols-3 relative 
         md:grid-cols-[1fr_minmax(8rem,10rem)_minmax(8rem,10rem)_minmax(8rem,10rem)]
         grid-rows-[2.5rem_auto] h-24 pt-2 items-center text-FGI_blue font-bold`}>
-            <h1 className="hidden md:block pl-5 font-black text-3xl z-40 pointer-events-none">
+            <h1 id="freedex-title"
+            className="absolute top-0 left-0 w-full flex h-[2.9rem] text-4xl items-end md:relative pl-5 font-black z-40 pointer-events-none">
                 Freedex
             </h1>
             <h2 onClick={() => handleClickOpenFilters()} id="filter-text">
