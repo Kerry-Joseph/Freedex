@@ -107,13 +107,14 @@ const Header = ({ filterState, setFilterState, showSortOption }) => {
     }
     
 
-    const filterNameChange = () => {
+    const handleClickOpenFilters = () => {
         if(filtersOpen === "start up" || filtersOpen === false){
             setFiltersOpen(true)
         } else {
             setFiltersOpen(false)
         }
     }
+
     
     useEffect(() => {
         const filterTextElement = document.querySelector("#filter-text")
@@ -129,6 +130,7 @@ const Header = ({ filterState, setFilterState, showSortOption }) => {
         }
     }, [filtersOpen])
 
+
     return (
         <div
         className={`top-0 left-0 bg-FGI_dark_blue grid grid-cols-3 relative 
@@ -137,7 +139,7 @@ const Header = ({ filterState, setFilterState, showSortOption }) => {
             <h1 className="hidden md:block pl-5 font-black text-3xl z-40 pointer-events-none">
                 Freedex
             </h1>
-            <h2 onClick={() => filterNameChange()} id="filter-text">
+            <h2 onClick={() => handleClickOpenFilters()} id="filter-text">
                 filters:
             </h2>
             {/* sort */}
