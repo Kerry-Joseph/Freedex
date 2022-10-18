@@ -1,8 +1,8 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
 
 const Header = ({ filterState, setFilterState, showSortOption }) => {
 
-    const [filterTextState, setFilterTextState] = useState("add filters")
+    const [filtersOpen, setFiltersOpen] = useState('start up')
     
     // tag list dropdown
     const tagList = document.querySelector("#tag-list")
@@ -108,27 +108,40 @@ const Header = ({ filterState, setFilterState, showSortOption }) => {
     
 
     const filterNameChange = () => {
-        if(filterTextState === "filters:"){
-            setFilterTextState("add filters")
-        } else if(filterTextState === "add filters") {
-            setFilterTextState("filters:")
+        if(filtersOpen === "start up" || filtersOpen === false){
+            setFiltersOpen(true)
+        } else {
+            setFiltersOpen(false)
         }
     }
+    
+    useEffect(() => {
+        const filterTextElement = document.querySelector("#filter-text")
+        if(filtersOpen === 'start up'){
+            filterTextElement.className = 
+                "hidden absolute top-2 right-[1.5rem] h-10 w-screen bg-FGI_dark_blue z-30 cursor-pointer md:flex items-end justify-end font-black text-xl"
+        } else if(filtersOpen){
+            filterTextElement.className = 
+                "hidden absolute top-2 right-[31.5rem] h-10 w-screen bg-FGI_dark_blue z-30 cursor-pointer md:flex items-end justify-end font-black text-xl md:animate-open_filters"
+        } else {
+            filterTextElement.className = 
+                "hidden absolute top-2 right-[1.5rem] h-10 w-screen bg-FGI_dark_blue z-30 cursor-pointer md:flex items-end justify-end font-black text-xl md:animate-close_filters"
+        }
+    }, [filtersOpen])
 
     return (
         <div
-        className="top-0 left-0 bg-FGI_dark_blue grid grid-cols-3 
-        md:grid-cols-[1fr_minmax(8rem,10rem)_minmax(8rem,10rem)_minmax(8rem,10rem)_minmax(8rem,10rem)] 
-        grid-rows-[2.5rem_auto] h-24 pt-2 items-center text-FGI_blue font-bold">
-            <h1 className="hidden md:block pl-5 font-black text-3xl">
+        className={`top-0 left-0 bg-FGI_dark_blue grid grid-cols-3 relative 
+        md:grid-cols-[1fr_minmax(8rem,10rem)_minmax(8rem,10rem)_minmax(8rem,10rem)]
+        grid-rows-[2.5rem_auto] h-24 pt-2 items-center text-FGI_blue font-bold`}>
+            <h1 className="hidden md:block pl-5 font-black text-3xl z-40 pointer-events-none">
                 Freedex
             </h1>
-            <h2 onClick={() => filterNameChange()}
-            className="hidden cursor-pointer md:block justify-self-end self-end pr-7 font-black text-xl">
-                {filterTextState}
+            <h2 onClick={() => filterNameChange()} id="filter-text">
+                filters:
             </h2>
             {/* sort */}
-            <div
+            <div id="sort-filter"
             className="relative">
                 <div onClick={() => showSorts()}
                 className="relative border-r h-6 cursor-pointer">
@@ -152,7 +165,7 @@ const Header = ({ filterState, setFilterState, showSortOption }) => {
                 </ul>
             </div>
             {/* tag */}
-            <div
+            <div id="tag-filter"
             className="relative">
                 <h1 onClick={() => showTags()} 
                 className="relative border-r h-6 cursor-pointer">
@@ -187,7 +200,7 @@ const Header = ({ filterState, setFilterState, showSortOption }) => {
                 </ul>
             </div>
             {/* platform */}
-            <div
+            <div id="platform-filter"
             className="relative">
                 <h1 onClick={() => showPlatforms()}
                 className="relative h-6 cursor-pointer">
@@ -210,7 +223,7 @@ const Header = ({ filterState, setFilterState, showSortOption }) => {
             {/* searchbar */}
             <form 
             className="col-span-5 px-4">
-                <input type="text" placeholder="search..." value={filterState.search} onChange={handleChange} 
+                <input type="text" placeholder="Search Freedex..." value={filterState.search} onChange={handleChange} 
                 className="w-full rounded-md h-8 px-3 bg-FGI_white text-FGI_dark_blue focus:outline-none 
                 focus:border-FGI_blue focus:border-2"/>
             </form>

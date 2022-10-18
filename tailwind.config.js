@@ -10,7 +10,23 @@ module.exports = {
       'FGI_dark_blue' : '#1b4079',
       'black': '#000000',
     },
-    extend: {},
+    extend: {
+      keyframes: {
+        open_filters: {
+          '0%': {transform: 'translateX(30rem)'},
+          '100%': {transform: 'translateX(0)'}
+        },
+        close_filters: {
+          '0%': {transform: 'translateX(-30rem)'},
+          '100%': {transform: 'translateX(0)'}
+        }
+      },
+
+      animation: {
+        open_filters: 'open_filters .5s',
+        close_filters: 'close_filters .5s'
+      }
+    },
   },
   plugins: [],
 }
