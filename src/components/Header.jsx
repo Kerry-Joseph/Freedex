@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react"
 
-const Header = ({ filterState, setFilterState, showSortOption }) => {
+export default function Header({ filterState, setFilterState, showSortOption }) {
 
     const [filtersOpen, setFiltersOpen] = useState('start up')
     
@@ -112,6 +112,12 @@ const Header = ({ filterState, setFilterState, showSortOption }) => {
             setFiltersOpen(true)
         } else {
             setFiltersOpen(false)
+            tagList.style.display = "none"
+            tagSelection.style.borderBottom = "solid 0 #44ccff"
+            platformList.style.display = "none"
+            platformSelection.style.borderBottom = "solid 0 #44ccff"
+            sortList.style.display = "none"
+            sortSelection.style.borderBottom = "solid 0 #44ccff"
         }
     }
 
@@ -232,5 +238,3 @@ const Header = ({ filterState, setFilterState, showSortOption }) => {
         </div>
     )
 }
-
-export default Header
