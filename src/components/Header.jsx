@@ -6,7 +6,7 @@ export default function Header({ filterState, setFilterState, showSortOption }) 
     // state
     const [filtersOpen, setFiltersOpen] = useState('start up')
     const [modeSwitch, setModeSwitch] = useState(true)
-    
+    const [themeAnimation, setThemeAnimation] = useState("")
 
 
     // tag list dropdown
@@ -154,12 +154,12 @@ export default function Header({ filterState, setFilterState, showSortOption }) 
     const changeTheme = () => {
         if(localStorage.theme === "dark"){
             localStorage.theme = "light"
+            setThemeAnimation('animate-light_theme')
             setModeSwitch('float-left') 
-            console.log(localStorage.theme)
         } else {
             localStorage.theme = "dark"
+            setThemeAnimation('animate-dark_theme')
             setModeSwitch('float-right') 
-            console.log(localStorage.theme)
         }
     }
 
@@ -278,7 +278,7 @@ export default function Header({ filterState, setFilterState, showSortOption }) 
             className="bg-FGI_white col-span-2 w-[4rem] bg-FGI_white dark:bg-FGI_dark_blue md:absolute md:right-6 
             md:bottom-2 md:h-8 justify-self-center border-2 h-4/6 cursor-pointer rounded-2xl">
                 <div id="mode-ball"
-                className={`${modeSwitch} relative w-1/2 h-full bg-FGI_dark_blue border rounded-2xl`}>
+                className={`${modeSwitch} ${themeAnimation} relative w-1/2 h-full bg-FGI_dark_blue border rounded-2xl`}>
                     <ThemeIcon modeSwitch={modeSwitch}/>
                 </div>
             </div>

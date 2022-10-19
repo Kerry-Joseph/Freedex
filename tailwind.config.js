@@ -24,13 +24,23 @@ module.exports = {
         close_filters: {
           '0%': {transform: 'translateX(-30rem)'},
           '100%': {transform: 'translateX(0)'}
+        },
+        light_theme: {
+          '0%': {transform: 'translateX(2rem)'},
+          '100%': {transform: 'translateX(0)'}
+        },
+        dark_theme: {
+          '0%': {transform: 'translateX(-2rem)'},
+          '100%': {transform: 'translateX(0)'}
         }
       },
 
       animation: {
         open_filters: 'open_filters .5s',
         open_filters_mobile: 'open_filters_mobile .5s',
-        close_filters: 'close_filters .5s'
+        close_filters: 'close_filters .5s',
+        light_theme: 'light_theme .5s',
+        dark_theme: 'dark_theme .5s'
       }
     },
   },
