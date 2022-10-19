@@ -91,23 +91,23 @@ export default function Header({ filterState, setFilterState, showSortOption }) 
     
     // sort url cookie functions 
     const noSortUrlCookie = () => {
-        document.cookie = "url=https://free-to-play-games-database.p.rapidapi.com/api/games;path=/"
+        localStorage.url = "https://free-to-play-games-database.p.rapidapi.com/api/games"
         window.location.reload()
     }
     const releaseDatetSortUrlCookie = () => {
-        document.cookie = "url=https://free-to-play-games-database.p.rapidapi.com/api/games?sort-by=release-date;path=/"
+        localStorage.url = "https://free-to-play-games-database.p.rapidapi.com/api/games?sort-by=release-date"
         window.location.reload()
     }
     const popularitySortUrlCookie = () => {
-        document.cookie = "url=https://free-to-play-games-database.p.rapidapi.com/api/games?sort-by=popularity;path=/"
+        localStorage.url = "https://free-to-play-games-database.p.rapidapi.com/api/games?sort-by=popularity"
         window.location.reload()
     }
     const alphabeticalSortUrlCookie = () => {
-        document.cookie = "url=https://free-to-play-games-database.p.rapidapi.com/api/games?sort-by=alphabetical;path=/"
+        localStorage.url = "https://free-to-play-games-database.p.rapidapi.com/api/games?sort-by=alphabetical"
         window.location.reload()
     }
     const relevanceSortUrlCookie = () => {
-        document.cookie = "url=https://free-to-play-games-database.p.rapidapi.com/api/games?sort-by=relevance;path=/"
+        localStorage.url = "https://free-to-play-games-database.p.rapidapi.com/api/games?sort-by=relevance"
         window.location.reload()
     }
     
@@ -170,7 +170,6 @@ export default function Header({ filterState, setFilterState, showSortOption }) 
     }, [])
 
     
-
 
     return (
         <div

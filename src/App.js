@@ -19,26 +19,6 @@ function App() {
   
 
 
-  // splits cookie string to return just the url
-  const selectedSortUrl = () => {
-    const cookieSplitBySemi = document.cookie.split(";")
-    const urlCookie = cookieSplitBySemi.filter(cookie => cookie.includes("url"))
-    if(urlCookie.length === 0){
-      document.cookie = "url=https://free-to-play-games-database.p.rapidapi.com/api/games;path=/"
-      const urlCookieSplitByEquals = urlCookie[0].split("=")
-      const url = urlCookieSplitByEquals[2] ? urlCookieSplitByEquals[1] + "=" + urlCookieSplitByEquals[2] : urlCookieSplitByEquals[1]
-      return url
-    } else {
-      const urlCookieSplitByEquals = urlCookie[0].split("=")
-      const url = urlCookieSplitByEquals[2] ? urlCookieSplitByEquals[1] + "=" + urlCookieSplitByEquals[2] : urlCookieSplitByEquals[1]
-      return url
-    }
-  }
-
-  let URL = selectedSortUrl()
-
-
-
   // recieve data
   const options = {
     method: 'GET',
@@ -50,7 +30,7 @@ function App() {
 
   const getGameData = async() => {
     try {
-      const res = await fetch(URL, options)
+      const res = await fetch(localStorage.url, options)
       const data = await res.json()
       setGameData(data)
     } catch(err) {
@@ -66,15 +46,15 @@ function App() {
 
   // sort filter text is based off of fetched url
   const showSortOption = () => {
-    if(URL === "https://free-to-play-games-database.p.rapidapi.com/api/games"){
+    if(localStorage.url === "https://free-to-play-games-database.p.rapidapi.com/api/games"){
       return 'None'
-    } else if(URL === "https://free-to-play-games-database.p.rapidapi.com/api/games?sort-by=release-date"){
+    } else if(localStorage.url === "https://free-to-play-games-database.p.rapidapi.com/api/games?sort-by=release-date"){
       return 'Release Date'
-    } else if(URL === "https://free-to-play-games-database.p.rapidapi.com/api/games?sort-by=popularity"){
+    } else if(localStorage.url === "https://free-to-play-games-database.p.rapidapi.com/api/games?sort-by=popularity"){
       return 'Popularity'
-    } else if(URL === "https://free-to-play-games-database.p.rapidapi.com/api/games?sort-by=alphabetical"){
+    } else if(localStorage.url === "https://free-to-play-games-database.p.rapidapi.com/api/games?sort-by=alphabetical"){
       return 'Alphabetical'
-    } else if(URL === "https://free-to-play-games-database.p.rapidapi.com/api/games?sort-by=relevance"){
+    } else if(localStorage.url === "https://free-to-play-games-database.p.rapidapi.com/api/games?sort-by=relevance"){
       return 'Relevance'
     }
   }
