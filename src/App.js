@@ -55,6 +55,8 @@ function App() {
       return 'Alphabetical'
     } else if(localStorage.url === process.env.REACT_APP_RELEVANCE_URL){
       return 'Relevance'
+    } else {
+      return 'None'
     }
   }
 
