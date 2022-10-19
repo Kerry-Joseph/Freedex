@@ -62,7 +62,29 @@ function App() {
 
   
   const dataLoading = () => {
-    return <p>loading...</p>
+    return (
+      <div
+      className='absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-20 h-20'>
+        <div
+        className=' w-full h-full bg-FGI_blue rounded-[20rem] animate-spin'>
+          <div
+          className='absolute left-1/2 top-1/2 w-3/4 h-3/4 -translate-x-1/2 -translate-y-1/2 bg-FGI_dark_blue rounded-[20rem]'>
+            <div
+            className='absolute left-1/2 top-1/2 w-3 h-16 -translate-x-1/2 -translate-y-1/2 bg-FGI_blue rotate-45'>
+              <div
+              className='absolute left-1/2 top-1/2 w-3 h-16 -translate-x-1/2 -translate-y-1/2 bg-FGI_blue rotate-90'>
+                <div
+                className='absolute w-10 h-10 bg-FGI_blue rounded-[20rem] left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2'>
+                  <div
+                  className='absolute w-16 h-8 bg-FGI_blue left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 rotate-45'>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    )
   }
 
 
