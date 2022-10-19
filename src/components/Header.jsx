@@ -91,23 +91,22 @@ export default function Header({ filterState, setFilterState, showSortOption }) 
     
     // sort url cookie functions 
     const noSortUrlCookie = () => {
-        localStorage.url = "https://free-to-play-games-database.p.rapidapi.com/api/games"
+        localStorage.url = process.env.REACT_APP_NO_SORT_URL
         window.location.reload()
     }
     const releaseDatetSortUrlCookie = () => {
-        localStorage.url = "https://free-to-play-games-database.p.rapidapi.com/api/games?sort-by=release-date"
-        window.location.reload()
+        localStorage.url = process.env.REACT_APP_RELEASE_DATE_URL
     }
     const popularitySortUrlCookie = () => {
-        localStorage.url = "https://free-to-play-games-database.p.rapidapi.com/api/games?sort-by=popularity"
+        localStorage.url = process.env.REACT_APP_POPULARITY_URL
         window.location.reload()
     }
     const alphabeticalSortUrlCookie = () => {
-        localStorage.url = "https://free-to-play-games-database.p.rapidapi.com/api/games?sort-by=alphabetical"
+        localStorage.url = process.env.REACT_APP_ALPHABETICAL_URL
         window.location.reload()
     }
     const relevanceSortUrlCookie = () => {
-        localStorage.url = "https://free-to-play-games-database.p.rapidapi.com/api/games?sort-by=relevance"
+        localStorage.url = process.env.REACT_APP_RELEVANCE_URL
         window.location.reload()
     }
     

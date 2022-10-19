@@ -4,7 +4,6 @@ import Header from './components/Header';
 import Index from './components/Index';
 import GameDisplay from './components/GameDisplay';
 
-
 function App() {
 
   // states 
@@ -46,15 +45,15 @@ function App() {
 
   // sort filter text is based off of fetched url
   const showSortOption = () => {
-    if(localStorage.url === "https://free-to-play-games-database.p.rapidapi.com/api/games"){
+    if(localStorage.url === process.env.REACT_APP_NO_SORT_URL){
       return 'None'
-    } else if(localStorage.url === "https://free-to-play-games-database.p.rapidapi.com/api/games?sort-by=release-date"){
+    } else if(localStorage.url === process.env.REACT_APP_RELEASE_DATE_URL){
       return 'Release Date'
-    } else if(localStorage.url === "https://free-to-play-games-database.p.rapidapi.com/api/games?sort-by=popularity"){
+    } else if(localStorage.url === process.env.REACT_APP_POPULARITY_URL){
       return 'Popularity'
-    } else if(localStorage.url === "https://free-to-play-games-database.p.rapidapi.com/api/games?sort-by=alphabetical"){
+    } else if(localStorage.url === process.env.REACT_APP_ALPHABETICAL_URL){
       return 'Alphabetical'
-    } else if(localStorage.url === "https://free-to-play-games-database.p.rapidapi.com/api/games?sort-by=relevance"){
+    } else if(localStorage.url === process.env.REACT_APP_RELEVANCE_URL){
       return 'Relevance'
     }
   }
