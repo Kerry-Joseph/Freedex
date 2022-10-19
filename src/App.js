@@ -22,18 +22,18 @@ function App() {
   const options = {
     method: 'GET',
     headers: {
-      'X-RapidAPI-Key': 'baa97ae877mshc69a69725591f49p11b149jsn48d04de188ed',
+      'X-RapidAPI-Key': process.env.REACT_APP_API_KEY,
       'X-RapidAPI-Host': 'free-to-play-games-database.p.rapidapi.com'
     }
   };
 
   const getGameData = async() => {
     try {
-      const res = await fetch(localStorage.url, options)
+      const res = await fetch(!localStorage.url ? process.env.REACT_APP_NO_SORT_URL : localStorage.url, options)
       const data = await res.json()
       setGameData(data)
     } catch(err) {
-      console.log(err)
+      console.log("failed to fetch")
     }
   }
 
