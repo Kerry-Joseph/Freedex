@@ -31,9 +31,19 @@ html {
   }
 }
 
-#game-display {
+#game-display{
   &::-webkit-scrollbar {
     background: #f4ebd9;
+    width: 8px;
+  }
+  &::-webkit-scrollbar-thumb {
+    background-color: #44ccff;
+    border-radius: .4rem;
+  }
+}
+#game-display-dark{
+  &::-webkit-scrollbar {
+    background: #1b4079;
     width: 8px;
   }
   &::-webkit-scrollbar-thumb {

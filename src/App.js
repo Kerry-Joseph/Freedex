@@ -7,7 +7,7 @@ import GameDisplay from './components/GameDisplay';
 
 function App() {
 
-  // states ----
+  // states 
   const [gameData, setGameData] = useState(null)
   const [idState, setIdState] = useState(null) // game id for game display
   const [filterState, setFilterState] = useState({
@@ -19,6 +19,7 @@ function App() {
   
 
 
+  // splits cookie string to return just the url
   const selectedSortUrl = () => {
     const cookieSplitBySemi = document.cookie.split(";")
     const urlCookie = cookieSplitBySemi.filter(cookie => cookie.includes("url"))
@@ -34,24 +35,11 @@ function App() {
     }
   }
 
-
   let URL = selectedSortUrl()
 
 
-  const showSortOption = () => {
-    if(URL === "https://free-to-play-games-database.p.rapidapi.com/api/games"){
-      return 'None'
-    } else if(URL === "https://free-to-play-games-database.p.rapidapi.com/api/games?sort-by=release-date"){
-      return 'Release Date'
-    } else if(URL === "https://free-to-play-games-database.p.rapidapi.com/api/games?sort-by=popularity"){
-      return 'Popularity'
-    } else if(URL === "https://free-to-play-games-database.p.rapidapi.com/api/games?sort-by=alphabetical"){
-      return 'Alphabetical'
-    } else if(URL === "https://free-to-play-games-database.p.rapidapi.com/api/games?sort-by=relevance"){
-      return 'Relevance'
-    }
-  }
 
+  // recieve data
   const options = {
     method: 'GET',
     headers: {
@@ -70,30 +58,44 @@ function App() {
     }
   }
 
-
-
   useEffect(() => {
     getGameData()
-  }, [])
+  })
 
 
 
- 
+  // sort filter text is based off of fetched url
+  const showSortOption = () => {
+    if(URL === "https://free-to-play-games-database.p.rapidapi.com/api/games"){
+      return 'None'
+    } else if(URL === "https://free-to-play-games-database.p.rapidapi.com/api/games?sort-by=release-date"){
+      return 'Release Date'
+    } else if(URL === "https://free-to-play-games-database.p.rapidapi.com/api/games?sort-by=popularity"){
+      return 'Popularity'
+    } else if(URL === "https://free-to-play-games-database.p.rapidapi.com/api/games?sort-by=alphabetical"){
+      return 'Alphabetical'
+    } else if(URL === "https://free-to-play-games-database.p.rapidapi.com/api/games?sort-by=relevance"){
+      return 'Relevance'
+    }
+  }
+
 
   
-  
-  
-  const loading = () => {
+  const dataLoading = () => {
     return <p>loading...</p>
   }
+
+
   
-  const loaded = () => {
+  const dataLoaded = () => {
+
+    // filters game data by selected filters
     const index = gameData.filter(game => {
       // all filters active
       if(game.genre === filterState.tag && game.platform.includes(filterState.platform) 
           && game.title.toLowerCase().includes(filterState.search.toLowerCase())){
-              return game
-      // two filters active
+              return 
+      // two filters acgametive
       } else if (game.genre === filterState.tag && game.platform.includes(filterState.platform) 
           && filterState.search === ""){
               return game
@@ -122,6 +124,8 @@ function App() {
     
     const filteredIDs = index.map(game => game.id)
 
+    
+
     const changeGridLayoutIfGameDisplayIsActive = () => {
       if(idState){
         return "grid-cols-[1fr_33%]"
@@ -130,8 +134,22 @@ function App() {
       }
     }
 
+
+
+    // sets theme based off localStorage.theme
+    const themeCheck = () => {
+      if(localStorage.theme === 'dark'){
+        return "dark"
+      } else {
+        return ""
+      }
+    }
+
+
+
     return (
-      <div className={`App grid max-w-[1280px] w-[1280px] ${changeGridLayoutIfGameDisplayIsActive()} 
+      <div
+      className={`App ${themeCheck()} grid max-w-[1280px] w-[1280px] ${changeGridLayoutIfGameDisplayIsActive()} 
       grid-rows-[6rem_auto] h-screen overflow-x-hidden `}>
         <Header 
           filterState = {filterState}
@@ -156,9 +174,9 @@ function App() {
   }
 
 
-  return(
+  return (
     <div id="" className="flex justify-center">
-        {gameData ? loaded() : loading()}
+        {gameData ? dataLoaded() : dataLoading()}
     </div>
   ) 
 
