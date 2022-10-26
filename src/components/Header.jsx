@@ -258,7 +258,7 @@ export default function Header({ filterState, setFilterState, showSortOption }) 
                 </h1>
                 <ul id="platform-list" onClick={handlePlatformClick}
                 className="hidden absolute top-10 w-full text-FGI_dark_blue rounded-b-xl bg-FGI_white 
-                border-b border-x py-1 px-2">
+                border-b border-x py-1 px-2 z-40">
                     <li>None</li>
                     <li>PC</li>
                     <li>Browser</li> 
@@ -272,9 +272,10 @@ export default function Header({ filterState, setFilterState, showSortOption }) 
                 dark:placeholder:text-FGI_blue dark:bg-FGI_dark_blue dark:border-FGI_blue dark:border-2 dark:text-FGI_blue 
                 focus:border-FGI_blue focus:border-2"/>
             </form>
+            {/* theme button */}
             <div onClick={changeTheme}
             className="bg-FGI_white col-span-2 w-[4rem] bg-FGI_white dark:bg-FGI_dark_blue md:absolute md:right-6 
-            md:bottom-2 md:h-8 justify-self-center border-2 h-4/6 cursor-pointer rounded-2xl">
+            md:bottom-2 md:h-8 justify-self-center border-2 h-4/6 cursor-pointer rounded-2xl z-0">
                 <div id="mode-ball"
                 className={`${modeSwitch} ${themeAnimation} relative w-1/2 h-full bg-FGI_dark_blue border rounded-2xl`}>
                     <ThemeIcon modeSwitch={modeSwitch}/>
