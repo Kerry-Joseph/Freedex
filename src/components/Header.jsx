@@ -199,7 +199,7 @@ export default function Header({ filterState, setFilterState, showSortOption }) 
                 </div>
                 <ul style={{display: "none"}} id="sort-list"
                 className="absolute top-10 w-full text-FGI_dark_blue rounded-b-xl bg-FGI_white 
-                border-b border-x py-1 px-2">
+                border-b border-x py-1 px-2 dark:bg-FGI_dark_blue dark:text-FGI_blue">
                     <li onClick={() => noSortUrlCookie()}>None</li>
                     <li onClick={() => releaseDatetSortUrlCookie()}>Release Date</li>
                     <li onClick={() => popularitySortUrlCookie()}>Popularity</li>
@@ -223,7 +223,7 @@ export default function Header({ filterState, setFilterState, showSortOption }) 
                 </h1>
                 <ul id="tag-list" onClick={handleTagClick}
                 className="absolute hidden top-10 text-FGI_dark_blue rounded-b-xl bg-FGI_white w-full 
-                border-b border-x py-1 px-2">
+                border-b border-x py-1 px-2 dark:bg-FGI_dark_blue dark:text-FGI_blue">
                     <li>None</li>
                     <li>MMOARPG</li>
                     <li>Shooter</li>
@@ -258,7 +258,7 @@ export default function Header({ filterState, setFilterState, showSortOption }) 
                 </h1>
                 <ul id="platform-list" onClick={handlePlatformClick}
                 className="hidden absolute top-10 w-full text-FGI_dark_blue rounded-b-xl bg-FGI_white 
-                border-b border-x py-1 px-2 z-40">
+                border-b border-x py-1 px-2 z-40 dark:bg-FGI_dark_blue dark:text-FGI_blue">
                     <li>None</li>
                     <li>PC</li>
                     <li>Browser</li> 
