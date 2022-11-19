@@ -1,6 +1,6 @@
-const Index = ({ setIdState, index}) => {
+const Index = ({ setIdState, index }) => {
 
-    const InnerIndex = () => {
+    const IndexItem = () => {
         return index.map((game) => (
             <div onClick={() => setIdState(game.id)} key={game.id} 
             className="cursor-pointer bg-FGI_white dark:bg-FGI_dark_blue dark:border dark:border-FGI_blue 
@@ -29,8 +29,8 @@ const Index = ({ setIdState, index}) => {
 
 
     return (
-        <div id="index" className="col-start-1 overflow-auto h-full w-full bg-FGI_dark_blue text-FGI_dark_blue">
-            <InnerIndex />
+        <div id="index" className="col-start-1 overflow-y-auto h-full w-full bg-FGI_dark_blue text-FGI_dark_blue">
+            <IndexItem />
         </div>
     ) 
 }

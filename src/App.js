@@ -177,6 +177,9 @@ function App() {
           setIdState = {setIdState}
           gameData = {gameData}
         />
+        <p className='fixed right-10 bottom-5 z-50'>
+          Database provided by FreeToGame.com 
+        </p>
       </div>
     )
   }
