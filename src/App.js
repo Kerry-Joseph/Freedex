@@ -94,19 +94,22 @@ function App() {
 
     // filters game data by selected filters
     const index = gameData.filter(game => {
+      const title = game.title.toLowerCase()
+      const search = filterState.search.toLowerCase()
+
       // all filters active
       if(game.genre === filterState.tag && game.platform.includes(filterState.platform) 
-          && game.title.toLowerCase().includes(filterState.search.toLowerCase())){
-              return 
-      // two filters acgametive
+          && title.includes(search)){
+              return game
+      // two filters active
       } else if (game.genre === filterState.tag && game.platform.includes(filterState.platform) 
           && filterState.search === ""){
               return game
-      } else if (game.genre === filterState.tag && game.title.toLowerCase().includes(filterState.search.toLowerCase()) 
+      } else if (game.genre === filterState.tag && title.includes(search) 
           && filterState.platform === "None"){
               return game
       } else if (game.genre === game.platform.includes(filterState.platform) 
-          && game.title.toLowerCase().includes(filterState.search.toLowerCase()) && filterState.tag === "None"){
+          && title.includes(search) && filterState.tag === "None"){
               return game
       // one filter active
       } else if (game.genre === filterState.tag && filterState.tag === "None" 
@@ -115,7 +118,7 @@ function App() {
       } else if (game.platform.includes(filterState.platform) && filterState.tag === "None" 
           && filterState.search === ""){
               return game
-      } else if (game.title.toLowerCase().includes(filterState.search.toLowerCase()) && filterState.tag === "None" 
+      } else if (title.includes(search) && filterState.tag === "None" 
           && filterState.platform === "None"){
               return game
       // none
@@ -124,6 +127,8 @@ function App() {
               return game
       }
     })
+    
+	
     
     const filteredIDs = index.map(game => game.id)
 

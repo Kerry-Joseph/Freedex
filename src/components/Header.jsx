@@ -13,7 +13,7 @@ export default function Header({ filterState, setFilterState, showSortOption }) 
     const tagList = document.querySelector("#tag-list")
     const tagSelection = document.querySelector("#tag-selection")
     const showTags = () => {
-        if(tagList.style.display === "none"){
+        if(tagList.style.display === "none" || !tagList.style.display){
             tagList.style.display = "block"
             tagSelection.style.borderBottom = "solid .18rem #44ccff" 
         } else {
@@ -36,11 +36,12 @@ export default function Header({ filterState, setFilterState, showSortOption }) 
 
 
 
+
     // platform list dropdown
     const platformList = document.querySelector("#platform-list")
     const platformSelection = document.querySelector("#platform-selection")
     const showPlatforms = () => {
-        if(platformList.style.display === "none"){
+        if(platformList.style.display === "none" || !platformList.style.display){
             platformList.style.display = "block"
             platformSelection.style.borderBottom = "solid .18rem #44ccff" 
         } else {
@@ -172,9 +173,10 @@ export default function Header({ filterState, setFilterState, showSortOption }) 
 
     return (
         <div
-        className={`top-0 left-0 bg-FGI_dark_blue grid grid-cols-6 relative 
+        className='top-0 left-0 bg-FGI_dark_blue grid grid-cols-6 relative 
         md:grid-cols-[1fr_1fr_1fr_minmax(8rem,10rem)_minmax(8rem,10rem)_minmax(8rem,10rem)]
-        grid-rows-[2.5rem_auto] h-24 pt-2 items-center text-FGI_blue font-bold`}>
+        grid-rows-[2.5rem_auto] h-24 pt-2 items-center text-FGI_blue font-bold [&_li]:cursor-pointer 
+        hover:[&_li]:text-FGI_blue dark:hover:[&_li]:text-FGI_white'>
             <h1 id="freedex-title"
             className="absolute top-0 left-0 w-full flex h-[2.9rem] text-4xl items-end md:relative pl-5 
             font-black z-40 pointer-events-none">
