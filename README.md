@@ -5,9 +5,9 @@ An application that utitlize a third party api, the FreeToGame API, to create an
 ## Technology used in development
 React.js | HTML/JSX | SCSS | Tailwind CSS | third party api (FreeToGame API)
 
-## Current Issues
-- The index will automatically scroll to the top on smaller screens
-- On some devices require multiple clicks to open the game information 
+## Known Issues
+- The index will automatically scroll to the top on smaller screens.
+- Some devices may require multiple clicks to open the game information display. 
 
 # [**Go to Freedex**](https://freedex.netlify.app/)
 
